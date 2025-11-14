@@ -1,0 +1,18 @@
+@import url(assets/css/colors.css);
+@import url(contrata-sv/pages/login/login.css);
+
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
+
+body {
+	min-height: 100vh;
+}
+
+html {
+	min-height: 100vh;
+}
+
+main {
+	min-height: 91vh;
+}

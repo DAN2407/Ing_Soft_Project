@@ -1,0 +1,11 @@
+.light-green-bg {
+	background: var(--ssp-light-green);
+}
+
+.brown-bg {
+	background: var(--ssp-brown);
+}
+
+.green-bg {
+	background: var(--ssp-green);
+}
