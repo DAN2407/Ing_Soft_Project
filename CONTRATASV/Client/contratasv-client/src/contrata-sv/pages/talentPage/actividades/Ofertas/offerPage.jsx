@@ -125,7 +125,7 @@ const OfferPage = () => {
           </div>
 
           <div className="flex items-center gap-3">
-            <Link to="/talentPage/actividades/ofertas/archivadas" className="text-sm px-4 py-2 rounded-md bg-white border hover:shadow-sm">
+            <Link to="/contratist-page/activities/offers/archived" className="text-sm px-4 py-2 rounded-md bg-white border hover:shadow-sm">
               Ver archivadas
             </Link>
 

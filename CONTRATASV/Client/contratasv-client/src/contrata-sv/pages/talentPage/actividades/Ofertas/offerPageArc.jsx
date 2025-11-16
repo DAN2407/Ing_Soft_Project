@@ -102,68 +102,77 @@ const OfferPageArc = () => {
 
         {/* list */}
         <section className="grid gap-6 sm:grid-cols-2">
-          {filtered.length === 0 ? (
+          {offers.length === 0 ? (
+            <div className="col-span-full bg-white rounded-2xl p-8 text-center shadow-sm">
+              <p className="text-slate-600">No hay ofertas archivadas.</p>
+              <div className="mt-4 flex justify-center">
+                <Link to="/talentPage/actividades/ofertas/nueva" className="inline-flex px-4 py-2 bg-emerald-600 text-white rounded-lg">Crear oferta</Link>
+              </div>
+            </div>
+          ) : filtered.length === 0 ? (
             <div className="col-span-full bg-white rounded-2xl p-8 text-center shadow-sm">
               <p className="text-slate-600">No se encontraron ofertas archivadas con esos criterios.</p>
               <div className="mt-4 flex justify-center">
                 <Link to="/talentPage/actividades/ofertas/activas" className="text-blue-600 hover:underline">Ver ofertas activas</Link>
               </div>
             </div>
-          ) : filtered.map(offer => (
-            <article key={offer.id} className="relative bg-white rounded-2xl shadow-[0_8px_24px_rgba(2,6,23,0.06)] overflow-hidden hover:shadow-lg transform transition hover:-translate-y-1">
-              <div className="p-6">
-                <div className="flex items-start gap-4">
-                  <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-blue-600 to-blue-500 text-white flex items-center justify-center font-bold text-lg shadow-md">
-                    <FontAwesomeIcon icon={faBoxArchive} />
-                  </div>
-
-                  <div className="flex-1">
-                    <h3 className="text-lg font-semibold text-slate-900">{offer.title}</h3>
-                    <div className="mt-2 flex flex-wrap gap-2 items-center">
-                      <span className="text-sm px-2 py-1 rounded-full bg-blue-50 text-blue-700 font-medium">{offer.category}</span>
-                      <span className="text-sm px-2 py-1 rounded-full bg-slate-100 text-slate-700">{offer.salary}</span>
-                      <span className="text-xs text-slate-400">• {offer.updated}</span>
+          ) : (
+            filtered.map(offer => (
+              <article key={offer.id} className="relative bg-white rounded-2xl shadow-[0_8px_24px_rgba(2,6,23,0.06)] overflow-hidden hover:shadow-lg transform transition hover:-translate-y-1">
+                <div className="p-6">
+                  <div className="flex items-start gap-4">
+                    <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-blue-600 to-blue-500 text-white flex items-center justify-center font-bold text-lg shadow-md">
+                      <FontAwesomeIcon icon={faBoxArchive} />
                     </div>
 
-                    <p className="mt-3 text-sm text-slate-600 line-clamp-3">{offer.excerpt}</p>
-
-                    <div className="mt-4 flex items-center justify-between gap-3">
-                      <div className="flex items-center gap-3">
-                        <button
-                          onClick={() => handleRestore(offer.id)}
-                          className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-white border text-sm hover:bg-white/90"
-                          aria-label={`Desarchivar ${offer.title}`}
-                        >
-                          <FontAwesomeIcon icon={faCirclePlus} className="text-blue-600" />
-                          Desarchivar
-                        </button>
-
-                        <Link
-                          to={`/talentPage/actividades/ofertas/editar/${offer.id}`}
-                          className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-blue-600 text-white text-sm hover:bg-blue-700"
-                          aria-label={`Editar ${offer.title}`}
-                        >
-                          <FontAwesomeIcon icon={faPen} />
-                          Editar
-                        </Link>
+                    <div className="flex-1">
+                      <h3 className="text-lg font-semibold text-slate-900">{offer.title}</h3>
+                      <div className="mt-2 flex flex-wrap gap-2 items-center">
+                        <span className="text-sm px-2 py-1 rounded-full bg-blue-50 text-blue-700 font-medium">{offer.category}</span>
+                        <span className="text-sm px-2 py-1 rounded-full bg-slate-100 text-slate-700">{offer.salary}</span>
+                        <span className="text-xs text-slate-400">• {offer.updated}</span>
                       </div>
 
-                      <button
-                        onClick={() => handleDelete(offer.id)}
-                        className="text-sm text-red-600 hover:underline"
-                        aria-label={`Eliminar ${offer.title}`}
-                      >
-                        <FontAwesomeIcon icon={faTrash} className="mr-2" />
-                        Eliminar
-                      </button>
+                      <p className="mt-3 text-sm text-slate-600 line-clamp-3">{offer.excerpt}</p>
+
+                      <div className="mt-4 flex items-center justify-between gap-3">
+                        <div className="flex items-center gap-3">
+                          <button
+                            onClick={() => handleRestore(offer.id)}
+                            className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-white border text-sm hover:bg-white/90"
+                            aria-label={`Desarchivar ${offer.title}`}
+                          >
+                            <FontAwesomeIcon icon={faCirclePlus} className="text-blue-600" />
+                            Desarchivar
+                          </button>
+
+                          <Link
+                            to={`/talentPage/actividades/ofertas/editar/${offer.id}`}
+                            className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-blue-600 text-white text-sm hover:bg-blue-700"
+                            aria-label={`Editar ${offer.title}`}
+                          >
+                            <FontAwesomeIcon icon={faPen} />
+                            Editar
+                          </Link>
+                        </div>
+
+                        <button
+                          onClick={() => handleDelete(offer.id)}
+                          className="text-sm text-red-600 hover:underline"
+                          aria-label={`Eliminar ${offer.title}`}
+                        >
+                          <FontAwesomeIcon icon={faTrash} className="mr-2" />
+                          Eliminar
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="h-1 bg-gradient-to-r from-blue-600 to-blue-400" />
-            </article>
-          ))}
+                <div className="h-1 bg-gradient-to-r from-blue-600 to-blue-400" />
+              </article>
+            ))
+          )}
         </section>
 
         {/* footer actions */}
@@ -173,7 +182,7 @@ const OfferPageArc = () => {
           </div>
 
           <div className="flex items-center gap-3">
-            <Link to="/talentPage/actividades/ofertas/activas" className="px-4 py-2 rounded-md bg-white border hover:shadow-sm text-sm">Ver activas</Link>
+            <Link to="/contratist-page/activities/offers/active" className="px-4 py-2 rounded-md bg-white border hover:shadow-sm text-sm">Ver activas</Link>
             <Link to="/talentPage/actividades/ofertas/nueva" className="px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 text-sm">Agregar oferta</Link>
           </div>
         </div>

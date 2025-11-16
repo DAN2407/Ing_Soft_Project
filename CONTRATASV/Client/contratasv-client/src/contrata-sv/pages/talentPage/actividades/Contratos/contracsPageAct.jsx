@@ -140,11 +140,8 @@ const ContracsPageAct = () => {
           </div>
 
           <div className="flex items-center gap-3">
-            <Link to="/contratist-page/actividades/contratos/historial" className="px-4 py-2 rounded-md bg-white border hover:shadow-sm text-sm">
+            <Link to="/contratist-page/activities/contracts/history" className="px-4 py-2 rounded-md bg-white border hover:shadow-sm text-sm">
               Ver historial
-            </Link>
-            <Link to="/contratist-page/actividades/ofertas/nueva" className="px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 text-sm">
-              Nueva oferta
             </Link>
           </div>
         </header>
