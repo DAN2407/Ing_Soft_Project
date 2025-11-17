@@ -1,77 +1,127 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faPhone, faCalendarAlt, faEye } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
-const ContratosUser = () => {
+const sampleActive = [
+  {
+    id: 401,
+    title: 'Reparación integral de baño',
+    client: 'Empresa ACME',
+    salary: '$250',
+    start: '2025-10-01',
+    end: '2025-10-10',
+    phone: '+503 7123-4567',
+    status: 'En progreso',
+  },
+  {
+    id: 402,
+    title: 'Instalación de cocina modular',
+    client: 'Hogar Selecto',
+    salary: '$420',
+    start: '2025-11-05',
+    end: '2025-11-12',
+    phone: '+503 7000-9999',
+    status: 'En progreso',
+  },
+];
 
-    return (
-      <main>
-        <section className="w-screen h-screen pt-8">
-          <article className="flex flex-col justify-center items-center snap-y h-screen w-screen overflow-scroll">
-              <div className="bg-white rounded-lg shadow-lg p-8 m-4">
-                  <div className="flex justify-between items-center">
-                      <Link to="/userPage/contratos/activas" className="py-2 px-4 rounded bg-green-700 hover:bg-green-900 text-white font-bold">
-                          Activas
-                      </Link>
-                      <Link to="/userPage/contratos/historial" className="py-2 px-4 rounded bg-white hover:bg-gray-500 text-black font-bold">
-                          Historial
-                      </Link>
-                      
-                  </div>
+const ContractCardUser = ({ c }) => (
+  <article className="rounded-2xl shadow-md hover:shadow-2xl transition p-6 bg-transparent">
+    <div className="flex flex-col sm:flex-row gap-4 sm:items-center">
+      <div className="flex-none">
+        <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-emerald-500 to-green-700 flex items-center justify-center text-white font-bold text-lg">
+          CT
+        </div>
+      </div>
+
+      <div className="flex-1 min-w-0">
+        <h3 className="text-lg font-semibold text-slate-900 dark:text-white truncate">{c.title}</h3>
+        <p className="text-sm text-slate-600 mt-1">Cliente: <span className="font-medium text-slate-800 dark:text-slate-200">{c.client}</span></p>
+
+        <div className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm text-slate-600">
+          <div className="flex items-center gap-2">
+            <FontAwesomeIcon icon={faCalendarAlt} className="text-emerald-500" />
+            <div>
+              <div className="text-xs text-slate-500">Fechas</div>
+              <div className="text-sm text-slate-800 dark:text-slate-200">{c.start} — {c.end}</div>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <FontAwesomeIcon icon={faPhone} className="text-emerald-400" />
+            <div>
+              <div className="text-xs text-slate-500">Contacto</div>
+              <div className="text-sm text-slate-800 dark:text-slate-200">{c.phone}</div>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2 justify-start sm:justify-end">
+            <div className="text-xs text-slate-500">Estado</div>
+            <div className={`px-3 py-1 rounded-full text-sm font-medium ${c.status === 'En progreso' ? 'bg-emerald-600 text-white' : 'bg-yellow-500 text-white'}`}>
+              {c.status}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div className="mt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+      <div className="flex gap-2 flex-wrap">
+        <Link to={`/client-page/contracts/${c.id}`} className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-emerald-600 hover:bg-emerald-700 text-white text-sm">
+          <FontAwesomeIcon icon={faEye} />
+          Ver detalles
+        </Link>
+
+        <button className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-white border text-sm hover:shadow-sm">
+          <FontAwesomeIcon icon={faCalendarAlt} />
+          Programar
+        </button>
+      </div>
+
+      <div className="flex items-center gap-3">
+        <button className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-red-600 hover:bg-red-700 text-white text-sm">
+          <FontAwesomeIcon icon={faTrash} />
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </article>
+);
+
+const ContratosUser = () => {
+  return (
+    <main className="min-h-screen bg-gradient-to-b from-white to-slate-50 p-6">
+      <section className="max-w-6xl mx-auto">
+        <header className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <h1 className="text-2xl md:text-3xl font-extrabold text-slate-900">Mis contratos</h1>
+            <p className="text-sm text-slate-600">Administra tus contratos activos y realiza acciones rápidas.</p>
+          </div>
+
+          <div className="flex gap-3">
+            <Link to="/client-page/contracts/active" className="px-4 py-2 rounded-md bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold">Activas</Link>
+            <Link to="/client-page/contracts/history" className="px-4 py-2 rounded-md bg-white border text-sm">Historial</Link>
+          </div>
+        </header>
+
+        <div className="grid gap-6">
+          {sampleActive.map(c => (
+            <ContractCardUser key={c.id} c={c} />
+          ))}
+
+          {sampleActive.length === 0 && (
+            <div className="col-span-full rounded-2xl p-8 text-center">
+              <p className="text-slate-600">No tienes contratos activos.</p>
+              <div className="mt-4">
+                <Link to="/client-page/offers" className="inline-flex px-4 py-2 bg-emerald-600 text-white rounded-lg">Ver ofertas</Link>
               </div>
-              <div className="bg-white rounded-lg shadow-lg p-8 m-4 overflow-y-auto">
-              <div className="flex flex-col items-center ml-40 mr-40  ">
-                      <div className="flex flex-col rounded-lg shadow-lg p-8 m-4">
-                          <h1 className="text-2xl font-bold">Titulo de la oferta</h1>
-                          <div className="flex flex-row justify-start pl-24 pr-24">
-                              <div className="flex flex-col items-start justify-start">
-                                  <div>
-                                      <h3 className="text-xl font-bold px-2 py-2 shadow-lg p-4 m-2 bg-green-400 rounded flex flex-row">Cliente: <h4 className="bg-white">HOLA</h4> </h3>
-                                      <h3 className="text-xl font-bold px-2 py-2 shadow-lg p-4 m-2 bg-green-400 rounded flex flex-row">Salario acordado: <h4 className="bg-white">HOLA</h4> </h3>
-                                      <h3 className="text-xl font-bold px-2 py-2 shadow-lg p-4 m-2 bg-green-400 rounded flex flex-row">Inicio de contrato: <h4 className="bg-white">HOLA</h4> </h3>
-                                      <h3 className="text-xl font-bold px-2 py-2 shadow-lg p-4 m-2 bg-green-400 rounded flex flex-row">Finalizacion de contrato: <h4 className="bg-white">HOLA</h4> </h3>
-                                      <h3 className="text-xl font-bold px-2 py-2 shadow-lg p-4 m-2 bg-green-400 rounded flex flex-row">Numero de contacto: <h4 className="bg-white">HOLA</h4> </h3>
-                                      <h3 className="text-xl font-bold px-2 py-2 shadow-lg p-4 m-2 bg-green-400 rounded flex flex-row">Estado de contrato: <h4 className="bg-white">HOLA</h4> </h3>
-                                  </div>
-                              </div>
-                              
-                          </div>
-                          <div className="flex justify-end items-center pt-8">
-                              <button className="py-1 px-2 rounded bg-red-700 hover:bg-red-900 text-1xl text-white font-bold">
-                                  <FontAwesomeIcon icon={faTrash} className="text-1xl pr-4 cursor-pointer"/>
-                                  Cancelar
-                              </button>
-                          </div>
-                      </div>
-                      <div className="flex flex-col rounded-lg shadow-lg p-8 m-4">
-                          <h1 className="text-2xl font-bold">Titulo de la oferta</h1>
-                          <div className="flex flex-row justify-start pl-24 pr-24">
-                              <div className="flex flex-col items-start justify-start">
-                                  <div>
-                                      <h3 className="text-xl font-bold px-2 py-2 shadow-lg p-4 m-2 bg-green-400 rounded flex flex-row">Cliente: <h4 className="bg-white">HOLA</h4> </h3>
-                                      <h3 className="text-xl font-bold px-2 py-2 shadow-lg p-4 m-2 bg-green-400 rounded flex flex-row">Salario acordado: <h4 className="bg-white">HOLA</h4> </h3>
-                                      <h3 className="text-xl font-bold px-2 py-2 shadow-lg p-4 m-2 bg-green-400 rounded flex flex-row">Inicio de contrato: <h4 className="bg-white">HOLA</h4> </h3>
-                                      <h3 className="text-xl font-bold px-2 py-2 shadow-lg p-4 m-2 bg-green-400 rounded flex flex-row">Finalizacion de contrato: <h4 className="bg-white">HOLA</h4> </h3>
-                                      <h3 className="text-xl font-bold px-2 py-2 shadow-lg p-4 m-2 bg-green-400 rounded flex flex-row">Numero de contacto: <h4 className="bg-white">HOLA</h4> </h3>
-                                      <h3 className="text-xl font-bold px-2 py-2 shadow-lg p-4 m-2 bg-green-400 rounded flex flex-row">Estado de contrato: <h4 className="bg-white">HOLA</h4> </h3>
-                                  </div>
-                              </div>
-                              
-                          </div>
-                          <div className="flex justify-end items-center pt-8">
-                              <button className="py-1 px-2 rounded bg-red-700 hover:bg-red-900 text-1xl text-white font-bold">
-                                  <FontAwesomeIcon icon={faTrash} className="text-1xl pr-4 cursor-pointer"/>
-                                  Cancelar
-                              </button>
-                          </div>
-                      </div>         
-                  </div>
-              </div>
-          </article>
-        </section>
-      </main>
+            </div>
+          )}
+        </div>
+      </section>
+    </main>
   );
-}   
+};
 
 export default ContratosUser;

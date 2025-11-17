@@ -3,54 +3,78 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFileContract, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
+const SolicitudCard = ({ cliente = 'HOLA', inicio = '—', fin = '—', direccion = '—', estado = 'Pendiente' }) => (
+  <article className="w-full bg-white/90 dark:bg-slate-900/60 backdrop-blur-sm rounded-2xl shadow-lg border border-slate-100 dark:border-slate-800 p-6 flex flex-col sm:flex-row gap-4 items-start">
+    <div className="flex-none">
+      <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white text-lg font-bold shadow">
+        S
+      </div>
+    </div>
+
+    <div className="flex-1 min-w-0">
+      <h3 className="text-lg font-semibold text-slate-900 dark:text-white truncate">Solicitud para: <span className="font-medium">“Ofrezco servicio de plomería en el área metropolitana de San Salvador”</span></h3>
+
+      <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-slate-600">
+        <div>
+          <div className="text-xs text-slate-500">Cliente</div>
+          <div className="font-medium text-slate-800 dark:text-slate-200">{cliente}</div>
+        </div>
+
+        <div>
+          <div className="text-xs text-slate-500">Fechas</div>
+          <div className="font-medium text-slate-800 dark:text-slate-200">{inicio} — {fin}</div>
+        </div>
+
+        <div className="sm:col-span-2">
+          <div className="text-xs text-slate-500">Dirección</div>
+          <div className="font-medium text-slate-800 dark:text-slate-200">{direccion}</div>
+        </div>
+      </div>
+    </div>
+
+    <div className="flex flex-col items-end gap-3">
+      <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold text-white ${estado === 'Cancelado' ? 'bg-red-600' : 'bg-blue-600'}`}>
+        {estado}
+      </span>
+
+      <div className="flex gap-2">
+        <button className="inline-flex items-center gap-2 py-2 px-3 rounded-md bg-red-600 hover:bg-red-700 text-white shadow-sm text-sm">
+          <FontAwesomeIcon icon={faTrash} />
+          Cancelar
+        </button>
+
+        <button className="inline-flex items-center gap-2 py-2 px-3 rounded-md bg-blue-600 hover:bg-blue-700 text-white shadow-sm text-sm">
+          <FontAwesomeIcon icon={faFileContract} />
+          Crear contrato
+        </button>
+      </div>
+    </div>
+  </article>
+);
+
 const SoliP = () => {
-    return (
-    <main>
-      <section className="w-screen h-screen pt-8">
-        <article className="flex flex-col justify-center items-center snap-y h-screen w-screen overflow-scroll">
-            <div className="bg-white rounded-lg shadow-lg p-8 m-4">
-                <div className="flex justify-between items-center">
-                    <Link to="/talentPage/solicitudes/pendientes" className="py-2 px-4 rounded bg-green-700 hover:bg-green-900 text-white font-bold">
-                        Pendientes
-                    </Link>
-                    <Link to="/talentPage/solicitudes/rechazadas" className="py-2 px-4 rounded bg-white hover:bg-gray-500 text-black font-bold">
-                        Rechazadas
-                    </Link>
-                    
-                </div>
-            </div>
-            <div className="bg-white rounded-lg shadow-lg p-8 m-4 overflow-y-auto">
-                <div className="flex flex-col items-center ml-auto mr-auto  ">
-                    <div className="flex flex-col rounded-lg shadow-lg p-4">
-                        <h2 className="text-2xl text-slate-800 font-bold">Has recibido una solicitud de servicio para la oferta: <h3 className="text-1xl text-green-500">“Ofrezco servicio de plomería en el área metropolitana de San Salvador”</h3></h2>
-                        <div className="flex flex-row justify-start pl-24 pr-24">
-                            <div className="flex flex-col items-start justify-start">
-                                <div>
-                                    <h3 className="text-xl font-bold px-2 py-2 shadow-lg p-4 m-2 bg-green-600 rounded flex flex-row">Cliente: <h4 className=" text-white">HOLA</h4> </h3>
-                                    <h3 className="text-xl font-bold px-2 py-2 shadow-lg p-4 m-2 bg-green-600 rounded flex flex-row">Fecha de inicio: <h4 className="text-white">HOLA</h4> </h3>
-                                    <h3 className="text-xl font-bold px-2 py-2 shadow-lg p-4 m-2 bg-green-600 rounded flex flex-row">Fecha de finalizacion: <h4 className="text-white">HOLA</h4> </h3>
-                                    <h3 className="text-xl font-bold px-2 py-2 shadow-lg p-4 m-2 bg-green-600 rounded flex flex-row">Direccion del servicio: <h4 className="text-white">HOLA</h4> </h3>
-                                </div>
-                            </div>
-                            
-                        </div>
-                        <div className="flex justify-end items-center">
-                            <button className="py-1 px-2 rounded bg-red-700 hover:bg-red-900 text-1xl text-white font-bold">
-                                <FontAwesomeIcon icon={faTrash} className="text-1xl pr-3 cursor-pointer"/>
-                                Cancelar
-                            </button>
-                            <button className="py-1 px-2 rounded bg-green-700 hover:bg-green-900 text-1xl text-white font-bold">
-                                <FontAwesomeIcon icon={faFileContract} className="text-1xl pr-3 cursor-pointer"/>
-                                Crear Contrato
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </article>
+  return (
+    <main className="min-h-screen bg-gradient-to-b from-white to-slate-50 p-6">
+      <section className="max-w-5xl mx-auto">
+        <header className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <h1 className="text-2xl font-extrabold text-slate-900">Solicitudes</h1>
+            <p className="text-sm text-slate-500">Revisa las solicitudes y crea contratos.</p>
+          </div>
+
+          <div className="flex gap-2">
+            <Link to="/contratist-page/requests/pending" className="px-4 py-2 rounded-md bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold">Pendientes</Link>
+            <Link to="/contratist-page/requests/declined" className="px-4 py-2 rounded-md bg-white border text-sm">Rechazadas</Link>
+          </div>
+        </header>
+
+        <div className="grid gap-6">
+          <SolicitudCard cliente="HOLA" inicio="01/12/2025" fin="05/12/2025" direccion="Col. San Salvador" estado="Pendiente" />
+          {/* duplicar o mapear aquí las solicitudes reales */}
+        </div>
       </section>
     </main>
-    );
-}
+  );
+};
 
 export default SoliP;

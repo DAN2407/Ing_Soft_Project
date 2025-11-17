@@ -1,117 +1,104 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faPen, faTrash, faUser, faCalendarAlt, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
+const sample = [
+  {
+    id: 1,
+    title: 'Solicitud para: Ofrezco servicio de plomería en el área metropolitana de San Salvador',
+    cliente: 'Juan Pérez',
+    salario: '₡250 / hora',
+    inicio: '01/12/2025',
+    fin: '05/12/2025',
+    contacto: '+503 7000-0000',
+    estado: 'Pendiente',
+  },
+  {
+    id: 2,
+    title: 'Solicitud para: Reparación eléctrica doméstica',
+    cliente: 'María López',
+    salario: '₡300 / hora',
+    inicio: '03/12/2025',
+    fin: '07/12/2025',
+    contacto: '+503 7001-1111',
+    estado: 'Pendiente',
+  },
+];
+
+const SolicitudCardModern = ({ s }) => (
+  <article className="w-full rounded-2xl p-5 md:p-6 shadow-md hover:shadow-2xl transition transform bg-transparent border border-transparent">
+    <div className="flex flex-col sm:flex-row gap-4 items-start">
+      <div className="flex-none">
+        <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-emerald-500 to-green-700 text-white flex items-center justify-center font-semibold">
+          <FontAwesomeIcon icon={faUser} />
+        </div>
+      </div>
+
+      <div className="flex-1 min-w-0">
+        <h3 className="text-lg md:text-xl font-semibold text-slate-900">{s.title}</h3>
+
+        <div className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-2 text-sm text-slate-600">
+          <div>
+            <div className="text-xs text-slate-500">Cliente</div>
+            <div className="font-medium text-slate-800">{s.cliente}</div>
+          </div>
+
+          <div>
+            <div className="text-xs text-slate-500">Fechas</div>
+            <div className="font-medium text-slate-800">{s.inicio} — {s.fin}</div>
+          </div>
+
+          <div className="hidden sm:block">
+            <div className="text-xs text-slate-500">Contacto</div>
+            <div className="font-medium text-slate-800">{s.contacto}</div>
+          </div>
+        </div>
+      </div>
+
+      <div className="flex flex-col items-end gap-3">
+        <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold text-white ${s.estado === 'Pendiente' ? 'bg-emerald-600' : 'bg-red-600'}`}>
+          {s.estado}
+        </span>
+
+        <div className="flex gap-2">
+          <button className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-emerald-600 hover:bg-emerald-700 text-white text-sm shadow-sm">
+            <FontAwesomeIcon icon={faPen} />
+            Crear contrato
+          </button>
+
+          <button className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-red-600 hover:bg-red-700 text-white text-sm shadow-sm">
+            <FontAwesomeIcon icon={faTrash} />
+            Cancelar
+          </button>
+        </div>
+      </div>
+    </div>
+  </article>
+);
+
 const SolicitudesUser = () => {
-    return (
+  return (
+    <main className="min-h-screen bg-gradient-to-b from-white to-slate-50 p-6">
+      <section className="max-w-5xl mx-auto">
+        <header className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <h1 className="text-2xl md:text-3xl font-extrabold text-slate-900">Solicitudes</h1>
+            <p className="text-sm text-slate-500">Revisa y gestiona las solicitudes recibidas.</p>
+          </div>
 
-        <main>
-          <section className="w-screen h-screen pt-8">
-          <article className="flex flex-col justify-center items-center snap-y h-screen w-screen overflow-scroll">
-                <div className="bg-white rounded-lg shadow-lg p-8 m-4">
-                    <div className="flex justify-between items-center">
-                        <Link to="/userPage/solicitudes/pendientes" className="py-2 px-4 rounded bg-green-700 hover:bg-green-900 text-white font-bold">
-                            Pendientes
-                        </Link>
-                        <Link to="/userPage/solicitudes/rechazadas" className="py-2 px-4 rounded bg-white hover:bg-gray-500 text-black font-bold">
-                            Rechazadas
-                        </Link>
-                        
-                    </div>
-                </div>
-                <div className="bg-white rounded-lg shadow-lg p-8 m-4 overflow-y-auto">
-                    <div className="flex flex-col items-center ml-auto mr-auto  ">
-                        <div className="flex flex-col rounded-lg shadow-lg p-4">
-                            <h2 className="text-2xl text-slate-800 font-bold">Has recibido una solicitud de servicio para la oferta: <h3 className="text-1xl text-green-500">“Ofrezco servicio de plomería en el área metropolitana de San Salvador”</h3></h2>
-                            <div className="flex flex-row justify-center pl-24 pr-24">
-                                <div className="flex flex-col items-start justify-start">
-                                    <div>
-                                        <h3 className="text-xl font-bold px-2 py-2 shadow-lg p-4 m-2 bg-green-400 rounded flex flex-row">Cliente: <h4 className="bg-white">HOLA</h4> </h3>
-                                        <h3 className="text-xl font-bold px-2 py-2 shadow-lg p-4 m-2 bg-green-400 rounded flex flex-row">Salario acordado: <h4 className="bg-white">HOLA</h4> </h3>
-                                        <h3 className="text-xl font-bold px-2 py-2 shadow-lg p-4 m-2 bg-green-400 rounded flex flex-row">Inicio de contrato: <h4 className="bg-white">HOLA</h4> </h3>
-                                        <h3 className="text-xl font-bold px-2 py-2 shadow-lg p-4 m-2 bg-green-400 rounded flex flex-row">Finalizacion de contrato: <h4 className="bg-white">HOLA</h4> </h3>
-                                        <h3 className="text-xl font-bold px-2 py-2 shadow-lg p-4 m-2 bg-green-400 rounded flex flex-row">Numero de contacto: <h4 className="bg-white">HOLA</h4> </h3>
-                                        <h3 className="text-xl font-bold px-2 py-2 shadow-lg p-4 m-2 bg-green-400 rounded flex flex-row">Estado de contrato: <h4 className="bg-white">HOLA</h4> </h3>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                            <div className="flex justify-end items-center pt-8">
-                                <button className="py-1 px-2 rounded bg-red-700 hover:bg-red-900 text-1xl text-white font-bold">
-                                    <FontAwesomeIcon icon={faTrash} className="text-1xl pr-4 cursor-pointer"/>
-                                    Cancelar
-                                </button>
-                                <button className="py-1 px-2 rounded bg-green-700 hover:bg-green-900 text-1xl text-white font-bold">
-                                <FontAwesomeIcon icon={faPen} className="text-1xl pr-4 cursor-pointer"/>
-                                    Crear Contrato
-                                </button>
-                            </div>
-                        </div>       
-                    </div>
-                    <div className="flex flex-col items-center ml-auto mr-auto  ">
-                        <div className="flex flex-col rounded-lg shadow-lg p-4">
-                            <h2 className="text-2xl text-slate-800 font-bold">Has recibido una solicitud de servicio para la oferta: <h3 className="text-1xl text-green-500">“Ofrezco servicio de plomería en el área metropolitana de San Salvador”</h3></h2>
-                            <div className="flex flex-row justify-center pl-24 pr-24">
-                                <div className="flex flex-col items-start justify-start">
-                                    <div>
-                                        <h3 className="text-xl font-bold px-2 py-2 shadow-lg p-4 m-2 bg-green-400 rounded flex flex-row">Cliente: <h4 className="bg-white">HOLA</h4> </h3>
-                                        <h3 className="text-xl font-bold px-2 py-2 shadow-lg p-4 m-2 bg-green-400 rounded flex flex-row">Salario acordado: <h4 className="bg-white">HOLA</h4> </h3>
-                                        <h3 className="text-xl font-bold px-2 py-2 shadow-lg p-4 m-2 bg-green-400 rounded flex flex-row">Inicio de contrato: <h4 className="bg-white">HOLA</h4> </h3>
-                                        <h3 className="text-xl font-bold px-2 py-2 shadow-lg p-4 m-2 bg-green-400 rounded flex flex-row">Finalizacion de contrato: <h4 className="bg-white">HOLA</h4> </h3>
-                                        <h3 className="text-xl font-bold px-2 py-2 shadow-lg p-4 m-2 bg-green-400 rounded flex flex-row">Numero de contacto: <h4 className="bg-white">HOLA</h4> </h3>
-                                        <h3 className="text-xl font-bold px-2 py-2 shadow-lg p-4 m-2 bg-green-400 rounded flex flex-row">Estado de contrato: <h4 className="bg-white">HOLA</h4> </h3>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                            <div className="flex justify-end items-center pt-8">
-                                <button className="py-1 px-2 rounded bg-red-700 hover:bg-red-900 text-1xl text-white font-bold">
-                                    <FontAwesomeIcon icon={faTrash} className="text-1xl pr-4 cursor-pointer"/>
-                                    Cancelar
-                                </button>
-                                <button className="py-1 px-2 rounded bg-green-700 hover:bg-green-900 text-1xl text-white font-bold">
-                                    <div className="text-1xl pr-4 cursor-pointer"/>
-                                    Crear Contrato
-                                </button>
-                            </div>
-                        </div>       
-                    </div>
-                    <div className="flex flex-col items-center ml-auto mr-auto  ">
-                        <div className="flex flex-col rounded-lg shadow-lg p-4">
-                            <h2 className="text-2xl text-slate-800 font-bold">Has recibido una solicitud de servicio para la oferta: <h3 className="text-1xl text-green-500">“Ofrezco servicio de plomería en el área metropolitana de San Salvador”</h3></h2>
-                            <div className="flex flex-row justify-center pl-24 pr-24">
-                                <div className="flex flex-col items-start justify-start">
-                                    <div>
-                                        <h3 className="text-xl font-bold px-2 py-2 shadow-lg p-4 m-2 bg-green-400 rounded flex flex-row">Cliente: <h4 className="bg-white">HOLA</h4> </h3>
-                                        <h3 className="text-xl font-bold px-2 py-2 shadow-lg p-4 m-2 bg-green-400 rounded flex flex-row">Salario acordado: <h4 className="bg-white">HOLA</h4> </h3>
-                                        <h3 className="text-xl font-bold px-2 py-2 shadow-lg p-4 m-2 bg-green-400 rounded flex flex-row">Inicio de contrato: <h4 className="bg-white">HOLA</h4> </h3>
-                                        <h3 className="text-xl font-bold px-2 py-2 shadow-lg p-4 m-2 bg-green-400 rounded flex flex-row">Finalizacion de contrato: <h4 className="bg-white">HOLA</h4> </h3>
-                                        <h3 className="text-xl font-bold px-2 py-2 shadow-lg p-4 m-2 bg-green-400 rounded flex flex-row">Numero de contacto: <h4 className="bg-white">HOLA</h4> </h3>
-                                        <h3 className="text-xl font-bold px-2 py-2 shadow-lg p-4 m-2 bg-green-400 rounded flex flex-row">Estado de contrato: <h4 className="bg-white">HOLA</h4> </h3>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                            <div className="flex justify-end items-center pt-8">
-                                <button className="py-1 px-2 rounded bg-red-700 hover:bg-red-900 text-1xl text-white font-bold">
-                                    <FontAwesomeIcon icon={faTrash} className="text-1xl pr-4 cursor-pointer"/>
-                                    Cancelar
-                                </button>
-                                <button className="py-1 px-2 rounded bg-green-700 hover:bg-green-900 text-1xl text-white font-bold">
-                                    <div className="text-1xl pr-4 cursor-pointer"/>
-                                    Crear Contrato
-                                </button>
-                            </div>
-                        </div>       
-                    </div>
-                </div>
-            </article>        
-          </section>  
-          
+          <div className="flex gap-2">
+            <Link to="/client-page/requests/pending" className="px-4 py-2 rounded-md bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold">Pendientes</Link>
+            <Link to="/client-page/requests/declined" className="px-4 py-2 rounded-md bg-white border text-sm">Rechazadas</Link>
+          </div>
+        </header>
 
-        </main>
-    );
-}
+        <div className="grid gap-6">
+          {sample.map(s => <SolicitudCardModern key={s.id} s={s} />)}
+        </div>
+      </section>
+    </main>
+  );
+};
 
 export default SolicitudesUser;
