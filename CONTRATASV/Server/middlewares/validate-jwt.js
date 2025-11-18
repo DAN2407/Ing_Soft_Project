@@ -1,47 +1,32 @@
-const { response, request } = require('express')
-const jwt = require('jsonwebtoken')
+const { response, request } = require('express');
+const jwt = require('jsonwebtoken');
 
-const User = require('../models/user');
+const validateJWT = (req = request, res = response, next) => {
+    const authHeader = req.header('Authorization');
 
-const validateJWT = async(req = request, res = response, next) => {
-
-    const token = req.header('Authorization');
-
-    if (!token) {
+    if (!authHeader) {
         return res.status(401).json({
-            msg: 'There is no token in the request',
+            msg: 'No token provided'
         });
     }
 
+    // Soporta "Bearer <token>" o token puro
+    const token = authHeader.startsWith('Bearer ')
+        ? authHeader.split(' ')[1]
+        : authHeader;
+
     try {
-        const {uid}= jwt.verify( token, process.env.SECRETORPRIVATEKEY );
-
-        //leer el usuario que corresponde al uid
-        const user = await User.findById(uid);
-
-        if (!user) {
-            return res.status(401).json({
-                msg: 'Token is no valid - the user could not be found in the database'
-            })
-        }
-        //Verificar si el uid tiene estado en true
-        if (!user.status){
-            return res.status(401).json({
-                msg: 'Token is no valid - user status is not valid'
-            })
-        }
-
-        req.user = user;
+        const { uid } = jwt.verify(token, process.env.SECRETORPRIVATEKEY);
+        req.uid = uid;
         next();
-
     } catch (error) {
-        console.log(error);
-        res.status(401).json({
-            msg: 'Token is not valid'
-        })
+        console.error('Token verification error:', error.message);
+        return res.status(401).json({
+            msg: 'Invalid token'
+        });
     }
 }
 
 module.exports = {
-    validateJWT,
+    validateJWT
 }

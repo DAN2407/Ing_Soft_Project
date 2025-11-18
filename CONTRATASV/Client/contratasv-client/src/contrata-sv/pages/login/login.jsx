@@ -24,13 +24,28 @@ const Login = () => {
     if ( errorMessage !== undefined && errorMessage !== 'SUCCESS' ) {
       Swal.fire('Error en la autenticación', errorMessage, 'error');
     }
+
     if( errorMessage === 'SUCCESS' ){
-      const user = JSON.parse(localStorage.getItem('user'));
+      // Seguridad: obtener user con manejo de errores y fallback de ruta
+      const userRaw = localStorage.getItem('user');
+      let user = null;
+      try {
+        user = userRaw ? JSON.parse(userRaw) : null;
+      } catch (e) {
+        console.error('Error parsing user from localStorage', e);
+        user = null;
+      }
+
+      // Determinar la ruta segura de redirección
+      const roleName = user?.role?.name;
+      const roleKey = roleName ? BACK_ROLES[roleName] : null;
+      const targetRoute = roleKey ? `/${roleKey}-page` : '/';
+
       Swal.fire('¡Bienvenido a ContrataSV!', '', 'success').then(()=>{
-        navigate(`/${BACK_ROLES[user?.role?.name]}-page`);
+        navigate(targetRoute);
       });
     }
-  }, [errorMessage])
+  }, [errorMessage, navigate])
 
   // clases para labels flotantes (activas si hay valor)
   const usernameLabelClass = `absolute left-4 top-4 text-gray-500 transition-all duration-200 pointer-events-none
