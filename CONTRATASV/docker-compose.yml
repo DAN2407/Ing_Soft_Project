@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  mongo:
+    image: mongo:6
+    restart: unless-stopped
+    volumes:
+      - mongo-data:/data/db
+
+  server:
+    build:
+      context: ./Server
+      dockerfile: Dockerfile
+    env_file:
+      - ./Server/.env
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+
+  client:
+    build:
+      context: ./Client/contratasv-client
+      dockerfile: Dockerfile
+      args:
+        VITE_BASE_URL: "http://localhost:3000/api"
+    ports:
+      - "5173:80"
+    depends_on:
+      - server
+
+volumes:
+  mongo-data:
