@@ -11,16 +11,16 @@ const RegisterMain = () => {
     }
 
     return(
-    <main className="pt-20 min-h-screen bg-gradient-to-b from-white to-gray-50">
+    <main className="pt-20 min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-slate-900 dark:to-slate-800 text-slate-900 dark:text-slate-100">
         <div className="w-full flex justify-center px-6">
             <div className="flex flex-col items-center w-full max-w-6xl">
                 <div className="flex justify-center mb-8">
-                    <h2 className="text-green-600 sm:text-4xl font-extrabold">Selecciona el tipo de cuenta</h2>
+                    <h2 className="text-green-600 sm:text-4xl font-extrabold dark:text-green-300">Selecciona el tipo de cuenta</h2>
                 </div>
             
                 <div className="grid xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-8 w-full">
                     <div
-                      className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow transform hover:-translate-y-1 p-8 cursor-pointer flex flex-col"
+                      className="bg-white dark:bg-slate-800 rounded-2xl shadow-md hover:shadow-lg transition-shadow transform hover:-translate-y-1 p-8 cursor-pointer flex flex-col"
                       onClick={ClientHandler}
                       role="button"
                       aria-label="Crear cuenta Cliente"
@@ -32,18 +32,18 @@ const RegisterMain = () => {
                                 </svg>
                             </div>
                             <div>
-                                <h3 className="text-2xl font-bold text-gray-800">CLIENTE</h3>
-                                <p className="text-sm text-gray-500">Contacta expertos y contrata servicios que se ajusten a tus necesidades.</p>
+                                <h3 className="text-2xl font-bold text-gray-800 dark:text-slate-100">CLIENTE</h3>
+                                <p className="text-sm text-gray-500 dark:text-slate-300">Contacta expertos y contrata servicios que se ajusten a tus necesidades.</p>
                             </div>
                         </div>
-                        <p className="mt-4 text-gray-700 flex-1">Estás en busca de contactar expertos en su área que puedan cumplir con determinado trabajo.</p>
+                        <p className="mt-4 text-gray-700 dark:text-slate-300 flex-1">Estás en busca de contactar expertos en su área que puedan cumplir con determinado trabajo.</p>
                         <div className="mt-6 flex justify-end">
-                            <span className="text-sm font-semibold text-green-600">Crear cuenta →</span>
+                            <span className="text-sm font-semibold text-green-600 dark:text-green-300">Crear cuenta →</span>
                         </div>
                     </div>
 
                     <div
-                      className="bg-gradient-to-br from-blue-600 to-blue-500 text-white rounded-2xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 p-8 cursor-pointer flex flex-col"
+                      className="bg-gradient-to-br from-blue-600 to-blue-500 text-white dark:from-blue-700 dark:to-blue-600 rounded-2xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 p-8 cursor-pointer flex flex-col"
                       onClick={TalentHandler}
                       role="button"
                       aria-label="Crear cuenta Talento"

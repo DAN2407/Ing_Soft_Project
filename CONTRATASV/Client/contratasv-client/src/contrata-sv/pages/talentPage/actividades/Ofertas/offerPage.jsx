@@ -38,7 +38,7 @@ const sampleOffers = [
 
 const OfferCard = ({ offer, onArchive }) => {
   return (
-    <article className="group bg-white rounded-2xl shadow-[0_10px_30px_rgba(2,6,23,0.08)] overflow-hidden hover:shadow-lg transform transition hover:-translate-y-1">
+    <article className="group bg-white dark:bg-slate-800 rounded-2xl shadow-[0_10px_30px_rgba(2,6,23,0.08)] dark:shadow-[0_10px_30px_rgba(2,6,23,0.6)] overflow-hidden hover:shadow-lg transform transition hover:-translate-y-1">
       <div className="flex flex-col sm:flex-row p-5 gap-4">
         <div className="flex-none flex items-center justify-center">
           <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-lg bg-gradient-to-br from-blue-600 to-blue-500 text-white flex items-center justify-center text-lg font-bold shadow-md">
@@ -49,20 +49,20 @@ const OfferCard = ({ offer, onArchive }) => {
         <div className="flex-1 min-w-0">
           <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
             <div className="min-w-0">
-              <h3 className="text-lg font-semibold text-slate-900 truncate">{offer.title}</h3>
+              <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100 truncate">{offer.title}</h3>
               <div className="mt-2 flex flex-wrap gap-2 items-center">
-                <span className="text-sm px-2 py-1 rounded-full bg-blue-50 text-blue-700 font-medium">{offer.category}</span>
-                <span className="text-sm px-2 py-1 rounded-full bg-slate-100 text-slate-700">{offer.salary}</span>
-                <span className="text-xs text-slate-400">• actualizado {offer.updated}</span>
+                <span className="text-sm px-2 py-1 rounded-full bg-blue-50 dark:bg-blue-900 text-blue-700 dark:text-blue-200 font-medium">{offer.category}</span>
+                <span className="text-sm px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200">{offer.salary}</span>
+                <span className="text-xs text-slate-400 dark:text-slate-400">• actualizado {offer.updated}</span>
               </div>
             </div>
 
             <div className="flex-shrink-0 flex gap-2 items-center">
-              <div className="hidden sm:block text-xs text-slate-400">{offer.status === 'active' ? 'Activa' : 'Archivada'}</div>
+              <div className="hidden sm:block text-xs text-slate-400 dark:text-slate-300">{offer.status === 'active' ? 'Activa' : 'Archivada'}</div>
             </div>
           </div>
 
-          <p className="mt-3 text-sm text-slate-600 line-clamp-3">{offer.excerpt}</p>
+          <p className="mt-3 text-sm text-slate-600 dark:text-slate-300 line-clamp-3">{offer.excerpt}</p>
 
           <div className="mt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
@@ -86,11 +86,11 @@ const OfferCard = ({ offer, onArchive }) => {
             </div>
 
             <div className="flex items-center justify-between sm:justify-end gap-3 w-full sm:w-auto">
-              <Link to={`/talentPage/actividades/ofertas/ver/${offer.id}`} className="inline-flex items-center gap-2 hover:text-blue-600 text-sm">
+              <Link to={`/talentPage/actividades/ofertas/ver/${offer.id}`} className="inline-flex items-center gap-2 hover:text-blue-600 dark:hover:text-blue-400 text-sm">
                 <FontAwesomeIcon icon={faEye} />
                 Ver detalles
               </Link>
-              <span className="text-xs text-slate-400">ID #{offer.id}</span>
+              <span className="text-xs text-slate-400 dark:text-slate-300">ID #{offer.id}</span>
             </div>
           </div>
         </div>
@@ -113,16 +113,16 @@ const OfferPage = () => {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-slate-50 py-8">
+    <main className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-slate-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 py-8 text-slate-900 dark:text-slate-100">
       <div className="max-w-6xl mx-auto px-4">
         <header className="mb-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div>
-            <h1 className="text-2xl md:text-3xl font-extrabold text-slate-900">Mis Ofertas</h1>
-            <p className="mt-1 text-sm text-slate-600 max-w-xl">Administra tus ofertas publicadas. Archiva u edita desde aquí.</p>
+            <h1 className="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-slate-100">Mis Ofertas</h1>
+            <p className="mt-1 text-sm text-slate-600 dark:text-slate-300 max-w-xl">Administra tus ofertas publicadas. Archiva u edita desde aquí.</p>
           </div>
 
           <div className="w-full md:w-auto flex flex-col sm:flex-row gap-3">
-            <Link to="/contratist-page/activities/offers/archived" className="text-sm px-4 py-2 rounded-md bg-white border hover:shadow-sm text-center">
+            <Link to="/contratist-page/activities/offers/archived" className="text-sm px-4 py-2 rounded-md bg-white dark:bg-slate-800 border hover:shadow-sm text-center dark:border-slate-700">
               Ver archivadas
             </Link>
 

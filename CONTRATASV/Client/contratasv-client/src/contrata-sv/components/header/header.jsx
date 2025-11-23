@@ -4,6 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { BACK_ROLES, ROLES } from '../../../utils/constants/index.js';
 import { useAuthStore } from '../../../utils/hooks/index.js';
+import useDarkMode from '../../../utils/hooks/useDarkMode';
+import React from 'react';
 
 const Header = () => {
     let links = [];
@@ -30,6 +32,7 @@ const Header = () => {
 
     const [showMenu, setShowMenu] = useState(false);
     const [user, setUser] = useState(null);
+    const [theme, toggleTheme] = useDarkMode();
 
     // lee usuario al montar y escucha cambios de storage (p. ej. login/logout en otra pestaña)
     useEffect(() => {
@@ -175,6 +178,20 @@ const Header = () => {
 
             {/* Overlay when mobile menu open */}
             {showMenu && <div onClick={() => setShowMenu(false)} className="fixed inset-0 bg-black/30 z-40"></div>}
+
+            {/* Toggle simple (colocar donde corresponda en el header) */}
+            <button
+                aria-label="Alternar modo oscuro"
+                onClick={toggleTheme}
+                className="ml-3 inline-flex items-center justify-center w-9 h-9 rounded-md bg-white/10 hover:bg-white/20 text-slate-200"
+                title="Alternar tema"
+            >
+                {theme === 'dark' ? (
+                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                ) : (
+                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                )}
+            </button>
         </nav>
     );
 }
