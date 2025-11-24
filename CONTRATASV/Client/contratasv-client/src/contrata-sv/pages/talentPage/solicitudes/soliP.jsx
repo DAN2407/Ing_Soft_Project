@@ -6,13 +6,13 @@ import { Link } from 'react-router-dom';
 const SolicitudCard = ({ cliente = 'HOLA', inicio = '—', fin = '—', direccion = '—', estado = 'Pendiente' }) => (
   <article className="w-full bg-white/90 dark:bg-slate-800/60 backdrop-blur-sm rounded-2xl shadow-lg border border-slate-100 dark:border-slate-700 p-6 flex flex-col sm:flex-row gap-4 items-start">
     <div className="flex-none">
-      <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white text-lg font-bold shadow">
+      <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-blue-500 to-blue-700 text-white flex items-center justify-center font-bold shadow">
         S
       </div>
     </div>
 
     <div className="flex-1 min-w-0">
-      <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100 truncate">Solicitud para: <span className="font-medium">“Ofrezco servicio de plomería en el área metropolitana de San Salvador”</span></h3>
+      <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100">Solicitud para: <span className="font-medium">“Ofrezco servicio de plomería en el área metropolitana de San Salvador”</span></h3>
 
       <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-slate-600 dark:text-slate-300">
         <div>
@@ -32,7 +32,7 @@ const SolicitudCard = ({ cliente = 'HOLA', inicio = '—', fin = '—', direccio
       </div>
     </div>
 
-    <div className="flex flex-col sm:items-end gap-3 w-full sm:w-auto">
+    <div className="flex flex-col items-end gap-3w-full sm:w-auto">
       <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold text-white ${estado === 'Cancelado' ? 'bg-red-600' : 'bg-blue-600'}`}>
         {estado}
       </span>
