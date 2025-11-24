@@ -9,11 +9,18 @@ const { getOffers,
         postOffers, 
         putOffers, 
         deleteOffers, 
-        unarchiveOffers} = require('../controllers/offers');
+        unarchiveOffers,
+        searchOffers,          
+        searchOffersByTags     
+    } = require('../controllers/offers');
 
 const router = Router();
 
 router.get('/', getOffers);
+
+router.get('/search', searchOffers);
+
+router.get('/tags', searchOffersByTags);
 
 router.get('/:id', [
     check('id', `Isn't a valid ID`).isMongoId(),
