@@ -83,7 +83,7 @@ Puedes encontrar mucho más de cómo utilizar este proyecto en nuestra [Document
 
 ## Licencia 📄
 
-Este proyecto está bajo la Licencia (Tu Licencia) - mira el archivo [LICENSE.md]() para detalles
+Este proyecto está bajo la Licencia (Tu Licencia) - mira el archivo [LICENSE.md](https://github.com/DAN2407/Ing_Soft_Project/blob/main/LICENSE) para detalles
 
 ## Expresiones de Gratitud 🎁
 
