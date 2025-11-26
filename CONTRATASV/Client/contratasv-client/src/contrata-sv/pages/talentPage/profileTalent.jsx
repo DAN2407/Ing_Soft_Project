@@ -13,40 +13,37 @@ const ProfileTalent = () => {
             try {
                 setLoading(true);
 
+                const token = localStorage.getItem('token');
+                if (!token) {
+                    setError('No se encontró token. Inicia sesión.');
+                    setUser(null);
+                    setLoading(false);
+                    return;
+                }
+
                 const response = await axios.get('http://localhost:3000/api/users/profile', {
                     headers: { 
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${localStorage.getItem('token')}`
-                    },
-                    withCredentials: true
+                        'Authorization': `Bearer ${token}`
+                    }
+                    // withCredentials removido porque usamos Authorization header
                 });
 
-                // Axios devuelve el cuerpo en response.data
-                const userData = response.data;
+                // soportar { user: {...} } o respuesta directa {...}
+                const userData = response.data.user || response.data;
                 setUser(userData);
                 setError(null);
                 
             } catch (err) {
                 console.error('Error fetching user data:', err);
+                console.error('Server response:', err.response && err.response.data);
 
-                // Si el servidor responde con 401, err.response existe
-                if (err.response && err.response.status === 401) {
-                    setError('No autorizado - por favor inicia sesión.');
-                    // opcional: redirigir a login
-                    // window.location.href = '/login';
+                if (err.response) {
+                    const serverMsg = err.response.data.msg || err.response.data.error || JSON.stringify(err.response.data);
+                    setError(serverMsg);
                 } else {
                     setError(err.message || 'Error al obtener datos del usuario.');
                 }
-
-                // Valores por defecto en caso de error
-                setUser({
-                    name: "Usuario",
-                    location: "Ubicación no disponible",
-                    phone: "N/A",
-                    email: "email@ejemplo.com",
-                    profileImage: "https://i.pinimg.com/originals/a8/bc/90/a8bc90ea196737604770aaf9c2d56a51.jpg",
-                    about: "Información no disponible en este momento."
-                });
             } finally {
                 setLoading(false);
             }

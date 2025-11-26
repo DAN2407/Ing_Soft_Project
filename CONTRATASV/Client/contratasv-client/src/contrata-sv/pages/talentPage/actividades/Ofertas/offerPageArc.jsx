@@ -81,7 +81,10 @@ const OfferCardArc = ({ offer, onRestore, onDelete }) => (
 );
 
 const OfferPageArc = () => {
-  const [offers, setOffers] = useState(initialArchived);
+  const [offers, setOffers] = useState(() => {
+    const saved = localStorage.getItem('archivedOffers');
+    return saved ? JSON.parse(saved) : initialArchived;
+  });
   const [query, setQuery] = useState('');
   const [onlyCategory, setOnlyCategory] = useState('Todas');
 
@@ -97,7 +100,9 @@ const OfferPageArc = () => {
     const item = offers.find(o => o.id === id);
     if (!item) return;
     if (!window.confirm(`¿Desarchivar la oferta "${item.title}"?`)) return;
-    setOffers(prev => prev.filter(o => o.id !== id));
+    const next = offers.filter(o => o.id !== id);
+    setOffers(next);
+    localStorage.setItem('archivedOffers', JSON.stringify(next));
     alert('Oferta desarchivada');
   };
 
@@ -105,7 +110,9 @@ const OfferPageArc = () => {
     const item = offers.find(o => o.id === id);
     if (!item) return;
     if (!window.confirm(`Eliminar permanentemente "${item.title}"? Esta acción no se puede deshacer.`)) return;
-    setOffers(prev => prev.filter(o => o.id !== id));
+    const next = offers.filter(o => o.id !== id);
+    setOffers(next);
+    localStorage.setItem('archivedOffers', JSON.stringify(next));
     alert('Oferta eliminada');
   };
 
@@ -139,14 +146,7 @@ const OfferPageArc = () => {
               {categories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
             </select>
 
-            <Link
-              to="/talentPage/actividades/ofertas/nueva"
-              className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg shadow-md text-sm transition justify-center"
-              aria-label="Agregar oferta"
-            >
-              <FontAwesomeIcon icon={faCirclePlus} />
-              Nueva
-            </Link>
+            
           </div>
         </div>
 

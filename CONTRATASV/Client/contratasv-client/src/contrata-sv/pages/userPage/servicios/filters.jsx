@@ -1,75 +1,51 @@
 import React from 'react';
 
-const FiltersService = () => {
-    return(
-        <div className="m-auto flex flex-col sm:flex-row justify-evenly mt-7">
-                <div className="relative inline-flex self-center">
-                    <svg className="text-white bg-green-700 absolute top-0 right-0 m-2 pointer-events-none p-2 rounded" xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" viewBox="0 0 38 22" version="1.1">
-                        <title>F09B337F-81F6-41AC-8924-EC55BA135736</title>
-                        <g id="ZahnhelferDE—Design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                            <g id="ZahnhelferDE–Icon&amp;Asset-Download" transform="translate(-539.000000, -199.000000)" fill="#ffffff" fill-rule="nonzero">
-                            <g id="Icon-/-ArrowRight-Copy-2" transform="translate(538.000000, 183.521208)">
-                            <polygon id="Path-Copy" transform="translate(20.000000, 18.384776) rotate(135.000000) translate(-20.000000, -18.384776) " points="33 5.38477631 33 31.3847763 29 31.3847763 28.999 9.38379168 7 9.38477631 7 5.38477631"/>
-                            </g>
-                            </g>
-                        </g>
-                    </svg>
-                    <select className="text-2xl font-bold rounded border-2 border-green-700 text-gray-600 h-14 w-60 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
-                        <option>A-Z</option>
-                        <option>Z-A</option>
-                    </select>
-                </div>
-                <div className="relative inline-flex self-center">
-                    <svg className="text-white bg-green-700 absolute top-0 right-0 m-2 pointer-events-none p-2 rounded" xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" viewBox="0 0 38 22" version="1.1">
-                        <title>F09B337F-81F6-41AC-8924-EC55BA135736</title>
-                        <g id="ZahnhelferDE—Design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                            <g id="ZahnhelferDE–Icon&amp;Asset-Download" transform="translate(-539.000000, -199.000000)" fill="#ffffff" fill-rule="nonzero">
-                            <g id="Icon-/-ArrowRight-Copy-2" transform="translate(538.000000, 183.521208)">
-                            <polygon id="Path-Copy" transform="translate(20.000000, 18.384776) rotate(135.000000) translate(-20.000000, -18.384776) " points="33 5.38477631 33 31.3847763 29 31.3847763 28.999 9.38379168 7 9.38477631 7 5.38477631"/>
-                            </g>
-                            </g>
-                        </g>
-                    </svg>
-                    <select className="text-2xl font-bold rounded border-2 border-green-700 text-gray-600 h-14 w-60 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
-                        <option>A-Z</option>
-                        <option>Z-A</option>
-                    </select>
-                </div>
-                <div className="relative inline-flex self-center">
-                    <svg className="text-white bg-green-700 absolute top-0 right-0 m-2 pointer-events-none p-2 rounded" xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" viewBox="0 0 38 22" version="1.1">
-                        <title>F09B337F-81F6-41AC-8924-EC55BA135736</title>
-                        <g id="ZahnhelferDE—Design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                            <g id="ZahnhelferDE–Icon&amp;Asset-Download" transform="translate(-539.000000, -199.000000)" fill="#ffffff" fill-rule="nonzero">
-                            <g id="Icon-/-ArrowRight-Copy-2" transform="translate(538.000000, 183.521208)">
-                            <polygon id="Path-Copy" transform="translate(20.000000, 18.384776) rotate(135.000000) translate(-20.000000, -18.384776) " points="33 5.38477631 33 31.3847763 29 31.3847763 28.999 9.38379168 7 9.38477631 7 5.38477631"/>
-                            </g>
-                            </g>
-                        </g>
-                    </svg>
-                    <select className="text-2xl font-bold rounded border-2 border-green-700 text-gray-600 h-14 w-60 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
-                        <option>A-Z</option>
-                        <option>Z-A</option>
-                    </select>
-                </div>
-                <div className="relative inline-flex self-center">
-                    <svg className="text-white bg-green-700 absolute top-0 right-0 m-2 pointer-events-none p-2 rounded" xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" viewBox="0 0 38 22" version="1.1">
-                        <title>F09B337F-81F6-41AC-8924-EC55BA135736</title>
-                        <g id="ZahnhelferDE—Design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                            <g id="ZahnhelferDE–Icon&amp;Asset-Download" transform="translate(-539.000000, -199.000000)" fill="#ffffff" fill-rule="nonzero">
-                            <g id="Icon-/-ArrowRight-Copy-2" transform="translate(538.000000, 183.521208)">
-                            <polygon id="Path-Copy" transform="translate(20.000000, 18.384776) rotate(135.000000) translate(-20.000000, -18.384776) " points="33 5.38477631 33 31.3847763 29 31.3847763 28.999 9.38379168 7 9.38477631 7 5.38477631"/>
-                            </g>
-                            </g>
-                        </g>
-                    </svg>
-                    <select className="text-2xl font-bold rounded border-2 border-green-700 text-gray-600 h-14 w-60 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
-                        <option>A-Z</option>
-                        <option>Z-A</option>
-                    </select>
-                </div>
 
-              </div>
-    )
-}
+const FiltersService = ({ sort = 'A-Z', status = 'Todos', onSortChange = () => {}, onStatusChange = () => {} }) => {
+  return (
+    <div className="max-w-5xl mx-auto bg-white dark:bg-slate-800 rounded-xl shadow-sm dark:shadow-none p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      
+      {/* Orden (segmented) */}
+      <div className="flex items-center gap-3">
+        <span className="text-sm font-medium text-slate-600 dark:text-slate-300">Orden</span>
+        <div className="inline-flex rounded-lg bg-slate-100 dark:bg-slate-700 p-1">
+          <button
+            aria-pressed={sort === 'A-Z'}
+            onClick={() => onSortChange('A-Z')}
+            className={`px-3 py-1 rounded-md text-sm font-semibold transition ${
+              sort === 'A-Z'
+                ? 'bg-emerald-600 text-white shadow'
+                : 'text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-600'
+            }`}
+          >
+            A-Z
+          </button>
+          <button
+            aria-pressed={sort === 'Z-A'}
+            onClick={() => onSortChange('Z-A')}
+            className={`ml-1 px-3 py-1 rounded-md text-sm font-semibold transition ${
+              sort === 'Z-A'
+                ? 'bg-emerald-600 text-white shadow'
+                : 'text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-600'
+            }`}
+          >
+            Z-A
+          </button>
+        </div>
+      </div>
+
+      {/* Placeholder para filtros adicionales (responsive) */}
+      <div className="w-full sm:w-auto flex justify-end">
+        <select
+          className="text-sm rounded-lg border border-green-700 bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-200 px-3 py-2 focus:outline-none"
+          aria-label="Más filtros (próximamente)"
+          disabled
+        >
+          <option>Más filtros (próximamente)</option>
+        </select>
+      </div>
+    </div>
+  );
+};
 
 export default FiltersService;
