@@ -54,7 +54,7 @@ Prueba crear un usuario con el endpoint "Create users"
 ```
 ## Despliegue 📦
 
-_La aplicación ha sido desplegada en :_
+_La aplicación tiene dockerfile y docker compose
 
 ## Construido con 🛠️
 
