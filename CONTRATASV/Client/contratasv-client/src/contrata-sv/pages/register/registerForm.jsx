@@ -29,15 +29,11 @@ const RegisterForm = () => {
   }
   
   const duiKeyDown = (e) => {
-    if(registerDui.length >= 9){
-      e.preventDefault();
-    }
+    // placeholder: validar longitud en onChange si es necesario
   }
   
   const phoneKeyDown = (e) => {
-    if(registerPhone.length >= 8){
-      e.preventDefault();
-    }
+    // placeholder: validar longitud en onChange si es necesario
   }
 
   const { startRegister, errorMessage } = useAuthStore();
@@ -101,17 +97,17 @@ const RegisterForm = () => {
         navigate(`/${BACK_ROLES[user?.role?.name]}-page`);
       });
     }
-  }, [errorMessage])
+  }, [errorMessage, navigate])
 
 
   return(
-    <main className="flex justify-center items-center bg-slate-200">
-      <div id="form" className="block bg-slate-50 p-6 rounded-xl shodow-md shadow-slate-300 w-90">
+    <main className="flex justify-center items-center bg-slate-200 dark:bg-slate-900 min-h-screen text-slate-900 dark:text-slate-100 p-6">
+      <div id="form" className="block bg-slate-50 dark:bg-slate-800 p-6 rounded-xl shodow-md shadow-slate-300 dark:shadow-slate-900 w-full max-w-3xl">
         <form onSubmit={ registerSubmit }>
-          <h2 className="text-green-700 text-4xl font-semibold my-4">Cuéntanos un poco más acerca de ti</h2>
-          <div className="flex flex-row">
-            <div id="firstName" className="w-1/2 mr-1">
-                <label className="text-sm">Primer nombre</label><br/>
+          <h2 className="text-green-700 dark:text-green-300 text-4xl font-semibold my-4">Cuéntanos un poco más acerca de ti</h2>
+          <div className="flex flex-row flex-wrap gap-2">
+            <div id="firstName" className="w-full sm:w-1/2">
+                <label className="text-sm text-slate-700 dark:text-slate-300">Primer nombre</label><br/>
                 <input
                   name="registerName"
                   value={ registerName }
@@ -119,10 +115,10 @@ const RegisterForm = () => {
                   type="text"
                   id="name"
                   required="required"
-                  className="h-10 w-full rounded-md border border-slate-300 text-sm pl-2 bg-transparent outline-green-600 shadow-sm"/>
+                  className="h-10 w-full rounded-md border border-slate-300 dark:border-slate-700 text-sm pl-2 bg-transparent text-slate-900 dark:text-slate-100 outline-green-600 shadow-sm"/>
             </div>
-            <div id="lastName" className="w-1/2 mr-1">
-                <label className="text-sm">Segundo nombre</label><br/>
+            <div id="lastName" className="w-full sm:w-1/2">
+                <label className="text-sm text-slate-700 dark:text-slate-300">Segundo nombre</label><br/>
                 <input
                   name="registerLastName"
                   value={ registerLastName }
@@ -130,13 +126,13 @@ const RegisterForm = () => {
                   type="text"
                   id="lastName"
                   required="required"
-                  className="h-10 w-full rounded-md border border-slate-300 text-sm pl-2 bg-transparent outline-green-600 shadow-sm"/>
+                  className="h-10 w-full rounded-md border border-slate-300 dark:border-slate-700 text-sm pl-2 bg-transparent text-slate-900 dark:text-slate-100 outline-green-600 shadow-sm"/>
             </div>
           </div>
   
-          <div className="flex flex-row flex-wrap mt-2">
-            <div className="sm:w-1/3 w-full sm:pr-2 pr-0">
-              <label className="text-sm">Fecha de Nacimiento</label><br/>
+          <div className="flex flex-row flex-wrap mt-2 gap-2">
+            <div className="sm:w-1/3 w-full">
+              <label className="text-sm text-slate-700 dark:text-slate-300">Fecha de Nacimiento</label><br/>
               <input
                 name="registerBirthDate"
                 value={ registerBirthDate }
@@ -145,10 +141,10 @@ const RegisterForm = () => {
                 type="date"
                 id="birthDate"
                 required="required"
-                className="h-10 w-full rounded-md border border-slate-300 text-sm pl-2 bg-transparent outline-green-600 shadow-sm"/>
+                className="h-10 w-full rounded-md border border-slate-300 dark:border-slate-700 text-sm pl-2 bg-transparent text-slate-900 dark:text-slate-100 outline-green-600 shadow-sm"/>
             </div>
-            <div className="sm:w-1/3 w-1/2 sm:mt-0 mt-2 pr-2">
-              <label className="mt-2 text-sm">Número de DUI</label><br/>
+            <div className="sm:w-1/3 w-1/2 mt-2 sm:mt-0">
+              <label className="mt-2 text-sm text-slate-700 dark:text-slate-300">Número de DUI</label><br/>
               <input
                 name="registerDui"
                 value={ registerDui }
@@ -158,10 +154,10 @@ const RegisterForm = () => {
                 id="documentNumber"
                 placeholder="#########"
                 required="required"
-                className="h-10 w-full rounded-md border border-slate-300 text-sm pl-2 bg-transparent outline-green-600 shadow-sm"/>
+                className="h-10 w-full rounded-md border border-slate-300 dark:border-slate-700 text-sm pl-2 bg-transparent text-slate-900 dark:text-slate-100 outline-green-600 shadow-sm"/>
             </div>
-            <div id="lastName" className="sm:w-1/3 w-1/2 sm:mt-0 mt-2">
-              <label className="mt-2 text-sm">Número de teléfono</label><br/>
+            <div id="lastName" className="sm:w-1/3 w-1/2 mt-2 sm:mt-0">
+              <label className="mt-2 text-sm text-slate-700 dark:text-slate-300">Número de teléfono</label><br/>
               <input
                 name="registerPhone"
                 value={ registerPhone }
@@ -171,12 +167,12 @@ const RegisterForm = () => {
                 id="phoneNumber"
                 placeholder="########"
                 required="required"
-                className="h-10 w-full rounded-md border border-slate-300 text-sm pl-2 bg-transparent outline-green-600 shadow-sm"/>
+                className="h-10 w-full rounded-md border border-slate-300 dark:border-slate-700 text-sm pl-2 bg-transparent text-slate-900 dark:text-slate-100 outline-green-600 shadow-sm"/>
             </div>
           </div>
 
           <div className="mt-2">
-            <label className="mt-2 text-sm">Dirección</label><br/>
+            <label className="mt-2 text-sm text-slate-700 dark:text-slate-300">Dirección</label><br/>
             <input
               name="registerResidence"
               value={ registerResidence }
@@ -184,22 +180,22 @@ const RegisterForm = () => {
               type="text"
               id="residence"
               required="required"
-              className="h-10 w-full rounded-md border border-slate-300 text-sm pl-2 bg-transparent outline-green-600 shadow-sm"/>
+              className="h-10 w-full rounded-md border border-slate-300 dark:border-slate-700 text-sm pl-2 bg-transparent text-slate-900 dark:text-slate-100 outline-green-600 shadow-sm"/>
           </div>
   
           <div className="mt-2">
-            <label className="mt-2 text-sm">Descripción</label><br/>
+            <label className="mt-2 text-sm text-slate-700 dark:text-slate-300">Descripción</label><br/>
             <textarea
               name="registerDescription"
               value={ registerDescription }
               onChange={ onRegisterInputChange }
               id="description"
               required="required"
-              className="h-10 w-full rounded-md border border-slate-300 text-sm pl-2 bg-transparent outline-green-600 shadow-sm"/>
+              className="h-10 w-full rounded-md border border-slate-300 dark:border-slate-700 text-sm pl-2 bg-transparent text-slate-900 dark:text-slate-100 outline-green-600 shadow-sm"/>
           </div>
   
           <div className="mt-2">
-            <label className="mt-2 text-sm">Correo electrónico</label><br/>
+            <label className="mt-2 text-sm text-slate-700 dark:text-slate-300">Correo electrónico</label><br/>
             <input
               name="registerEmail"
               value={ registerEmail }
@@ -207,12 +203,12 @@ const RegisterForm = () => {
               type="email"
               id="email"
               required="required"
-              className="h-10 w-full rounded-md border border-slate-300 text-sm pl-2 bg-transparent outline-green-600 shadow-sm"/>
+              className="h-10 w-full rounded-md border border-slate-300 dark:border-slate-700 text-sm pl-2 bg-transparent text-slate-900 dark:text-slate-100 outline-green-600 shadow-sm"/>
           </div>
   
-          <div className="flex flex-row mt-2">
-            <div id="firstName" className="w-1/2 mr-1">
-              <label className="mt-2 text-sm">Contraseña</label><br/>
+          <div className="flex flex-row mt-2 gap-2">
+            <div id="firstName" className="w-full sm:w-1/2">
+              <label className="mt-2 text-sm text-slate-700 dark:text-slate-300">Contraseña</label><br/>
               <div className="relative">
                 <input
                   name="registerPassword"
@@ -221,12 +217,12 @@ const RegisterForm = () => {
                   type={ showPassword ? "text" : "password" }
                   id="password"
                   required="required"
-                  className="h-10 w-full rounded-md border border-slate-300 text-sm pl-2 bg-transparent outline-green-600 shadow-sm pr-10"/>
+                  className="h-10 w-full rounded-md border border-slate-300 dark:border-slate-700 text-sm pl-2 bg-transparent text-slate-900 dark:text-slate-100 outline-green-600 shadow-sm pr-10"/>
                 <button
                   type="button"
                   aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
                   onClick={() => setShowPassword(v => !v)}
-                  className="absolute right-2 top-2 text-slate-600 p-1"
+                  className="absolute right-2 top-2 text-slate-600 dark:text-slate-300 p-1"
                 >
                   {showPassword
                     ? <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19.5c-5.523 0-10-4.477-10-10 0-1.085.173-2.13.49-3.107M3 3l18 18" /></svg>
@@ -235,8 +231,8 @@ const RegisterForm = () => {
                 </button>
               </div>
             </div>
-            <div id="lastName" className="w-1/2 mr-1">
-              <label className="mt-2 text-sm">Confirmar contraseña</label><br/>
+            <div id="lastName" className="w-full sm:w-1/2">
+              <label className="mt-2 text-sm text-slate-700 dark:text-slate-300">Confirmar contraseña</label><br/>
               <div className="relative">
                 <input
                   name="confirmPassword"
@@ -244,12 +240,12 @@ const RegisterForm = () => {
                   onChange={ onRegisterInputChange }
                   type={ showConfirm ? "text" : "password" }
                   id="confirmPassword"
-                  className="h-10 w-full rounded-md border border-slate-300 text-sm pl-2 bg-transparent outline-green-600 shadow-sm pr-10"/>
+                  className="h-10 w-full rounded-md border border-slate-300 dark:border-slate-700 text-sm pl-2 bg-transparent text-slate-900 dark:text-slate-100 outline-green-600 shadow-sm pr-10"/>
                 <button
                   type="button"
                   aria-label={showConfirm ? "Ocultar confirmación" : "Mostrar confirmación"}
                   onClick={() => setShowConfirm(v => !v)}
-                  className="absolute right-2 top-2 text-slate-600 p-1"
+                  className="absolute right-2 top-2 text-slate-600 dark:text-slate-300 p-1"
                 >
                   {showConfirm
                     ? <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19.5c-5.523 0-10-4.477-10-10 0-1.085.173-2.13.49-3.107M3 3l18 18" /></svg>
@@ -264,11 +260,11 @@ const RegisterForm = () => {
             type="submit"
             className="mt-5 bg-green-700 w-full h-10 cursor-pointer text-white rounded-md hover:bg-green-600 hover:outline outline-2 outline-green-600 outline-offset-2 text-sm"
           > Registrarse </button><br/>
-          <p className="text-lg my-2">¿Ya posees una cuenta? <a href="/login" className="text-green-600">Iniciar sesión</a></p>
+          <p className="text-lg my-2 text-slate-700 dark:text-slate-300">¿Ya posees una cuenta? <a href="/login" className="text-green-600 dark:text-green-400">Iniciar sesión</a></p>
         </form>
       </div>
     </main>
   )
 }
 
-export default RegisterForm
+export default RegisterForm;
